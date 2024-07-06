@@ -30,7 +30,7 @@ For more information on the FLINT algorithm, refer to the [official FLINT reposi
 
 ## Features
 
-pyflint is built around the Flint class, which provides a simple approach to perform an inverse Laplace transform for 1D and 2D relaxation NMR data. Key features include:
+flintpy is built around the Flint class, which provides a simple approach to perform an inverse Laplace transform for 1D and 2D relaxation NMR data. Key features include:
 
 - `T2`: T2 relaxation
 - `T1IR`: T1 relaxation for inversion recovery experiments

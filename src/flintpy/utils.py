@@ -1,4 +1,4 @@
-"""Utils functions for pyflint."""
+"""Utils functions for flintpy."""
 
 from pathlib import Path
 from typing import Tuple
