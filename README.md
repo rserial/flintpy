@@ -20,20 +20,32 @@
 
 Python implementation of FLINT algorithm for NMR relaxation data.
 
+This module provides a Python implementation of FLINT, a fast algorithm for estimating
+1D/2D NMR relaxation distributions. The algorithm is based on the work of Paul Teal and
+C. Eccles, who developed an adaptive truncation method for matrix decompositions to
+efficiently estimate NMR relaxation distributions.
 
-* GitHub repo: <https://github.com/rserial/flintpy.git>
-* Documentation: <https://flintpy.readthedocs.io>
-* Free software: GNU General Public License v3
+For more information on the FLINT algorithm, refer to the [official FLINT repository (Matlab)](https://github.com/paultnz/flint) and the paper by P.D. Teal and C. Eccles titled "Adaptive truncation of matrix decompositions and efficient estimation of NMR relaxation distributions" [published in Inverse Problems (April 2015)](http://dx.doi.org/10.1088/0266-5611/31/4/045010).
 
 
 ## Features
 
-* TODO
+pyflint is built around the Flint class, which provides a simple approach to perform an inverse Laplace transform for 1D and 2D relaxation NMR data. Key features include:
+
+- `T2`: T2 relaxation
+- `T1IR`: T1 relaxation for inversion recovery experiments
+- `T1SR`: T1 relaxation for saturation recovery experiments
+- `T1IRT2`/`T1SRT2`: T1-T2 2D relaxation maps for inversion/saturation recovery-T2 experiments
+- `T2T2`: T2-T2 2D relaxation maps T2-T2 experiments
 
 ## Quickstart
+Check out the [notebooks](./notebooks) directory for Jupyter notebooks demonstrating how to use this library.
 
-TODO
+## Installation
 
+```
+pip install git+https://github.com/rserial/flintpy.git
+```
 ## Credits
 
 This package was created with [Cookiecutter][cookiecutter] and the [fedejaure/cookiecutter-modern-pypackage][cookiecutter-modern-pypackage] project template.

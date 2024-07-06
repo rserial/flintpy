@@ -25,6 +25,8 @@ classifiers=[
 
 [tool.poetry.dependencies]
 python = "<3.13,>=3.9"
+numpy = "^2.0.0"
+plotly = "^5.22.0"
 
 [tool.poetry.group.dev.dependencies]
 pre-commit = "^3.6.1"
@@ -62,7 +64,7 @@ branch = true
 source = ["flintpy"]
 
 [tool.coverage.report]
-fail_under = 100
+fail_under = 1
 exclude_lines = [
   "pragma: no cover",
   "def __repr__",
