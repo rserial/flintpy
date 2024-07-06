@@ -76,6 +76,8 @@ target/
 
 # Jupyter Notebook
 .ipynb_checkpoints
+.jupyter/*
+!.jupyter/jupyter_lab_config.py
 
 # IPython
 profile_default/
@@ -131,5 +133,5 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-# Code editors
-.vscode
+# Macos
+.DS_Store

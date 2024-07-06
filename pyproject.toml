@@ -42,6 +42,7 @@ pytest-cov = "^4.1.0"
 isort = "^5.13.2"
 black = "^24.2.0"
 ruff = "^0.2.1"
+nbqa = "^1.8.5"
 
 [tool.poetry.group.security.dependencies]
 safety = "^3.0.1"
@@ -110,6 +111,7 @@ unfixable = [
 
 [tool.ruff.lint.per-file-ignores]
 "tests/*" = ["S101"]
+".jupyter/jupyter_lab_config.py" = ["E501", "ERA001"]
 
 [tool.ruff.lint.mccabe]
 max-complexity = 10

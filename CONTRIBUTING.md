@@ -72,4 +72,4 @@ execute `inv[oke] lint` and `inv[oke] format`.
 
 ## Additional Notes
 
-If you have any question feel free to contact us at rserial.
+If you have any question feel free to contact us at @rserial.
