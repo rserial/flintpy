@@ -60,7 +60,7 @@ def perform_ilt_and_plot(
     fig_samplebase.show()
 
     ilt_t1_axis = np.squeeze(flint.t1axis)
-    ilt_data = np.squeeze(flint.SS)
+    ilt_data = np.squeeze(flint.ss)
     return ilt_t1_axis, ilt_data
 
 
@@ -175,7 +175,6 @@ class Flint:
         alpha: float,
         t1range: Optional[Tuple[float, float]],
         t2range: Optional[Tuple[float, float]] = None,
-        ss: Optional[np.ndarray] = None,
         tol: float = 1e-5,
         maxiter: int = 100001,
         progress: int = 500,
@@ -189,7 +188,6 @@ class Flint:
             alpha (float): The (Tikhonov) regularization parameter.
             t1range (Optional[Tuple[float, float]]): The range of T1 relaxation times.
             t2range (Optional[Tuple[float, float]]): The range of T2 relaxation times.
-            ss (Optional[np.ndarray]): An optional starting estimate.
             tol (float): The relative change between successive calculations for exit.
             maxiter (int): The maximum number of iterations. Defaults to 100001.
             progress (int): The number of iterations between progress displays.
@@ -198,11 +196,11 @@ class Flint:
             ValueError: If kernel_name is not in kernel_functions dictionary.
         """
         kernel_functions: dict[str, list] = {
-            "T1IRT2": [kernels.kernel_t1_IR, kernels.kernel_t2],
-            "T1SRT2": [kernels.kernel_t1_SR, kernels.kernel_t2],
+            "T1IRT2": [kernels.kernel_t1_ir, kernels.kernel_t2],
+            "T1SRT2": [kernels.kernel_t1_sr, kernels.kernel_t2],
             "T2T2": [kernels.kernel_t2, kernels.kernel_t2],
-            "T1IR": [kernels.kernel_t1_IR],
-            "T1SR": [kernels.kernel_t1_SR],
+            "T1IR": [kernels.kernel_t1_ir],
+            "T1SR": [kernels.kernel_t1_sr],
             "T2": [kernels.kernel_t2],
         }
 
@@ -275,7 +273,7 @@ class Flint:
             s_new[s_new < 0] = 0.0
             ttnew = 0.5 * (1 + np.sqrt(1 + 4 * tt**2))
             trat = (tt - 1) / ttnew
-            yy = s_new + trat * (s_new - self.SS)
+            yy = s_new + trat * (s_new - self.ss)
             tt = ttnew
             self.SS = s_new
 
@@ -315,7 +313,7 @@ class Flint:
             ll = np.sqrt(np.sum(ss**2))
             if np.abs(ll - last_ll) / ll < 1e-10:
                 break
-            ss = self.update_SL(ss, k1k1, k2k2, ll)
+            ss = self.update_sl(ss, k1k1, k2k2, ll)
         ll = 1.001 * 2 * (ll + self.alpha)
         print("Lipschitz constant found:", ll)
         return ll
