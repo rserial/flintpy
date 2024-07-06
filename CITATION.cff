@@ -17,7 +17,7 @@ identifiers:
       https://github.com/rserial/flintpy/releases/tag/v0.1.0
     description: The Software Heritage link for version 0.1.0.
 repository-code: 'https://github.com/rserial/flintpy'
-abstract: Cookiecutter template for a modern Python package.
+abstract: Python implementation of FLINT algorithm for NMR relaxation data.
 keywords:
   - flintpy
 license: MIT
