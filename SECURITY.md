@@ -8,7 +8,7 @@ If you believe you have found a security vulnerability, please report it to us a
 
 **Please do not report security vulnerabilities through public GitHub issues.**
 
-Report security vulnerabilities by emailing the lead maintainer at rserial.
+Report security vulnerabilities by emailing the lead maintainer at @rserial.
 
 You should receive a response within 24 hours. If for some reason you do not, please follow up via email to ensure we received your original message.
 

@@ -6,7 +6,7 @@ Execute 'invoke --list' for guidance on using Invoke
 import platform
 import webbrowser
 from pathlib import Path
-from typing import Optional
+from typing import Any, Optional
 
 from invoke import call, task
 from invoke.context import Context
@@ -21,17 +21,24 @@ COVERAGE_DIR = ROOT_DIR.joinpath("htmlcov")
 COVERAGE_REPORT = COVERAGE_DIR.joinpath("index.html")
 SOURCE_DIR = ROOT_DIR.joinpath("src/flintpy")
 TEST_DIR = ROOT_DIR.joinpath("tests")
+JUPYTER_CONFIG_DIR = ROOT_DIR.joinpath(".jupyter")
+JUPYTER_NOTEBOOKS_DIR = ROOT_DIR.joinpath("notebooks")
+JUPYTER_ENV = {
+    "JUPYTER_CONFIG_DIR": JUPYTER_CONFIG_DIR,
+}
 PYTHON_TARGETS = [
     SOURCE_DIR,
     TEST_DIR,
+    DOCS_DIR.joinpath("conf.py"),
+    JUPYTER_CONFIG_DIR.joinpath("jupyter_lab_config.py"),
     ROOT_DIR.joinpath("noxfile.py"),
     Path(__file__),
 ]
 PYTHON_TARGETS_STR = " ".join([str(p) for p in PYTHON_TARGETS])
 
 
-def _run(c: Context, command: str) -> Optional[Result]:
-    return c.run(command, pty=platform.system() != "Windows")
+def _run(c: Context, command: str, env: Optional[dict[str, Any]] = None) -> Optional[Result]:
+    return c.run(command, pty=platform.system() != "Windows", env=env)
 
 
 @task()
@@ -89,14 +96,17 @@ def format_(c: Context, check: bool = False) -> None:
     """Format code."""
     isort_options = ["--check-only", "--diff"] if check else []
     _run(c, f"poetry run isort {' '.join(isort_options)} {PYTHON_TARGETS_STR}")
+    _run(c, f"poetry run nbqa isort {JUPYTER_NOTEBOOKS_DIR} {' '.join(isort_options)} ")
     black_options = ["--diff", "--check"] if check else ["--quiet"]
     _run(c, f"poetry run black {' '.join(black_options)} {PYTHON_TARGETS_STR}")
+    _run(c, f"poetry run nbqa black {JUPYTER_NOTEBOOKS_DIR} {' '.join(black_options)} ")
 
 
 @task()
 def ruff(c: Context) -> None:
     """Run ruff."""
     _run(c, f"poetry run ruff check {PYTHON_TARGETS_STR}")
+    _run(c, f"poetry run nbqa ruff {JUPYTER_NOTEBOOKS_DIR}")
 
 
 @task()
@@ -169,3 +179,9 @@ def version(c: Context, part: str, dry_run: bool = False) -> None:
     """Bump version."""
     bump_options = ["--dry-run"] if dry_run else []
     _run(c, f"poetry run bump2version {' '.join(bump_options)} {part}")
+
+
+@task()
+def lab(c: Context) -> None:
+    """Run juputer lab."""
+    _run(c, "poetry run jupyter-lab", env=JUPYTER_ENV)
