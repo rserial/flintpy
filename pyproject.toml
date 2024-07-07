@@ -116,6 +116,7 @@ unfixable = [
 [tool.ruff.lint.per-file-ignores]
 "tests/*" = ["S101"]
 ".jupyter/jupyter_lab_config.py" = ["E501", "ERA001"]
+"notebooks/*" = ["D100"]
 
 [tool.ruff.lint.mccabe]
 max-complexity = 10
