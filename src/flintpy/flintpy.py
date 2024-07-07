@@ -14,7 +14,8 @@ For more information on FLINT, see:
 
 from __future__ import annotations
 
-from typing import Any, Callable, Dict, List, Optional, Tuple, Type
+import logging
+from typing import Any, Callable, Optional, Type
 
 import numpy as np
 import plotly.graph_objects as go  # type: ignore
@@ -23,18 +24,20 @@ from flintpy import kernels
 from flintpy.plotting import plot_2d_ilt, plot_t1ir_ilt, plot_t1sr_ilt, plot_t2_ilt
 from flintpy.utils import logarithm_t_range
 
+logger = logging.getLogger(__name__)
+
 
 def perform_ilt_and_plot(
     decay: np.ndarray,
     tau1: np.ndarray,
-    dim_kernel_2d: Tuple[int, int],
+    dim_kernel_2d: tuple[int, int],
     alpha: float,
     kernel_name: str,
-    t1_range: Tuple[float, float],
-    t2_range: Optional[Tuple[float, float]],
+    t1_range: tuple[float, float],
+    t2_range: Optional[tuple[float, float]],
     plot_title: str,
     tau2: Optional[np.ndarray] = None,
-) -> Tuple[np.ndarray, np.ndarray]:
+) -> tuple[np.ndarray, np.ndarray]:
     """Perform inverse Laplace transform (ILT) from given data.
 
     Args:
@@ -43,13 +46,13 @@ def perform_ilt_and_plot(
         dim_kernel_2d (int): Dimension of the 2D kernel.
         alpha (float): Alpha parameter for ILT.
         kernel_name (str): Name of the kernel.
-        t1_range (Tuple[float, float]): Range of T1 values.
-        t2_range (Tuple[float, float]): Range of T2 values.
+        t1_range (tuple[float, float]): Range of T1 values.
+        t2_range (tuple[float, float]): Range of T2 values.
         plot_title (str): Title for the plot.
         tau2 (Optional[np.ndarray]): Value of tau2 parameter.
 
     Returns:
-        Tuple[np.ndarray, np.ndarray]: ilt_t1_axis and corresponding ilt_data.
+        tuple[np.ndarray, np.ndarray]: ilt_t1_axis and corresponding ilt_data.
     """
     signal = FlintSignal.load_from_data(decay, tau1, tau2)
 
@@ -117,11 +120,11 @@ class FlintSignal:
         return cls.load_from_data(signal, tau1, tau2)
 
     @classmethod
-    def average_signals(cls: Type["FlintSignal"], dir_list: List[str]) -> FlintSignal:
+    def average_signals(cls: Type["FlintSignal"], dir_list: list[str]) -> FlintSignal:
         """Averages a list of NMR signals from 1D txt files.
 
         Args:
-            dir_list (List[str]): A list of file paths.
+            dir_list (list[str]): A list of file paths.
 
         Returns:
             FlintSignal: An FlintSignal object with the averaged signal.
@@ -173,8 +176,8 @@ class Flint:
         kernel_shape: tuple[int, int],
         kernel_name: str,
         alpha: float,
-        t1range: Optional[Tuple[float, float]],
-        t2range: Optional[Tuple[float, float]] = None,
+        t1range: tuple[float, float],
+        t2range: Optional[tuple[float, float]] = None,
         tol: float = 1e-5,
         maxiter: int = 100001,
         progress: int = 500,
@@ -183,11 +186,11 @@ class Flint:
 
         Args:
             flint_signal (FlintSignal): The 2D array of NMR signal to be processed.
-            kernel_shape (Tuple[int, int]): The dimensions of the 2D kernel.
+            kernel_shape (tuple[int, int]): The dimensions of the 2D kernel.
             kernel_name (str): The name of the kernel function to be used.
             alpha (float): The (Tikhonov) regularization parameter.
-            t1range (Optional[Tuple[float, float]]): The range of T1 relaxation times.
-            t2range (Optional[Tuple[float, float]]): The range of T2 relaxation times.
+            t1range (Optional[tuple[float, float]]): The range of T1 relaxation times.
+            t2range (Optional[tuple[float, float]]): The range of T2 relaxation times.
             tol (float): The relative change between successive calculations for exit.
             maxiter (int): The maximum number of iterations. Defaults to 100001.
             progress (int): The number of iterations between progress displays.
@@ -275,23 +278,25 @@ class Flint:
             trat = (tt - 1) / ttnew
             yy = s_new + trat * (s_new - self.ss)
             tt = ttnew
-            self.SS = s_new
+            self.ss = s_new
 
             if iteration % self.progress == 0:
                 # Don't calculate the residual every iteration; it takes much longer
                 # than the rest of the algorithm
-                norm_s = self.alpha * np.sum(self.SS**2)
+                norm_s = self.alpha * np.sum(self.ss**2)
                 resid = (
                     signal_trace
-                    - 2 * np.trace(self.SS.T @ signal_operator)
-                    + np.trace(self.SS.T @ t1kernel_operator @ self.SS @ t2kernel_operator)
+                    - 2 * np.trace(self.ss.T @ signal_operator)
+                    + np.trace(self.ss.T @ t1kernel_operator @ self.ss @ t2kernel_operator)
                     + norm_s
                 )
                 self.resida[iteration] = resid
                 resd = (lastres - resid) / resid
                 lastres = resid
                 # show progress
-                print("%7d % 1.2e % 1.2e % 1.4e % 1.4e" % (iteration, tt, 1 - trat, resid, resd))
+                logger.info(
+                    "%7d % 1.2e % 1.2e % 1.4e % 1.4e", iteration, tt, 1 - trat, resid, resd
+                )
                 if np.abs(resd) < self.tol:
                     break
 
@@ -315,7 +320,7 @@ class Flint:
                 break
             ss = self.update_sl(ss, k1k1, k2k2, ll)
         ll = 1.001 * 2 * (ll + self.alpha)
-        print("Lipschitz constant found:", ll)
+        logger.info("Lipschitz constant found: %s", ll)
         return ll
 
     def update_sl(
@@ -342,7 +347,7 @@ class Flint:
         Returns:
             A plotly figure object.
         """
-        plotting_functions: Dict[str, Callable[..., Tuple[Any, ...]]] = {
+        plotting_functions: dict[str, Callable[..., tuple[Any, ...]]] = {
             "T2": plot_t2_ilt,
             "T1IR": plot_t1ir_ilt,
             "T1SR": plot_t1sr_ilt,
@@ -350,7 +355,7 @@ class Flint:
         }
 
         if self.kernel_type in plotting_functions:
-            figure = plotting_functions[self.kernel_type](self.SS, self.t1axis, self.t2axis)
+            figure = plotting_functions[self.kernel_type](self.ss, self.t1axis, self.t2axis)
             return figure
 
     def set_kernel(
