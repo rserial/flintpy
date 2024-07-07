@@ -47,7 +47,7 @@ def plot_t2_ilt(
     # Create the figure object
     fig = go.Figure(data=[trace], layout=layout)
 
-    fig.update_layout(width=500, height=500, template="pyflint_plotly_template")
+    fig.update_layout(width=500, height=500, template="flintpy_plotly_template")
     return fig
 
 
@@ -210,10 +210,10 @@ template.layout.width = 400
 template.layout.height = 400
 
 # Update the template name to 'my_custom_template'
-pio.templates["pyflint_plotly_template"] = template
+pio.templates["flintpy_plotly_template"] = template
 
 # Load the updated template
-pyflint_plotly_template = pio.templates["pyflint_plotly_template"]
+flintpy_plotly_template = pio.templates["flintpy_plotly_template"]
 
 # Set the updated template as the default
-pio.templates.default = "pyflint_plotly_template"
+pio.templates.default = "flintpy_plotly_template"
