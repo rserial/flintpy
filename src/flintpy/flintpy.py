@@ -275,16 +275,16 @@ class Flint:
             trat = (tt - 1) / ttnew
             yy = s_new + trat * (s_new - self.ss)
             tt = ttnew
-            self.SS = s_new
+            self.ss = s_new
 
             if iteration % self.progress == 0:
                 # Don't calculate the residual every iteration; it takes much longer
                 # than the rest of the algorithm
-                norm_s = self.alpha * np.sum(self.SS**2)
+                norm_s = self.alpha * np.sum(self.ss**2)
                 resid = (
                     signal_trace
-                    - 2 * np.trace(self.SS.T @ signal_operator)
-                    + np.trace(self.SS.T @ t1kernel_operator @ self.SS @ t2kernel_operator)
+                    - 2 * np.trace(self.ss.T @ signal_operator)
+                    + np.trace(self.ss.T @ t1kernel_operator @ self.ss @ t2kernel_operator)
                     + norm_s
                 )
                 self.resida[iteration] = resid
@@ -350,7 +350,7 @@ class Flint:
         }
 
         if self.kernel_type in plotting_functions:
-            figure = plotting_functions[self.kernel_type](self.SS, self.t1axis, self.t2axis)
+            figure = plotting_functions[self.kernel_type](self.ss, self.t1axis, self.t2axis)
             return figure
 
     def set_kernel(
