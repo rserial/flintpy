@@ -2,7 +2,7 @@
 # Visit https://bit.ly/cffinit to generate yours today!
 
 cff-version: 1.2.0
-title: Flintpy
+title: Flintpy-NMR
 message: >-
   If you use this software, please cite it using the
   metadata from this file.
@@ -20,5 +20,7 @@ repository-code: 'https://github.com/rserial/flintpy'
 abstract: Python implementation of FLINT algorithm for NMR relaxation data.
 keywords:
   - flintpy
+  - flintpy-nmr
+  - nmr
 license: MIT
 version: 0.1.0

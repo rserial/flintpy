@@ -1,15 +1,15 @@
 
-# Flintpy
+# Flintpy-NMR
 
 
 <div align="center">
 
-[![PyPI - Version](https://img.shields.io/pypi/v/flintpy.svg)](https://pypi.python.org/pypi/flintpy)
-[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/flintpy.svg)](https://pypi.python.org/pypi/flintpy)
+[![PyPI - Version](https://img.shields.io/pypi/v/flintpy-nmr.svg)](https://pypi.python.org/pypi/flintpy-nmr)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/flintpy-nmr.svg)](https://pypi.python.org/pypi/flintpy-nmr)
 [![Tests](https://github.com/rserial/flintpy/workflows/tests/badge.svg)](https://github.com/rserial/flintpy/actions?workflow=tests)
 [![Codecov](https://codecov.io/gh/rserial/flintpy/branch/main/graph/badge.svg)](https://codecov.io/gh/rserial/flintpy)
 [![Read the Docs](https://readthedocs.org/projects/flintpy/badge/)](https://flintpy.readthedocs.io/)
-[![PyPI - License](https://img.shields.io/pypi/l/flintpy.svg)](https://pypi.python.org/pypi/flintpy)
+[![PyPI - License](https://img.shields.io/pypi/l/flintpy-nmr.svg)](https://pypi.python.org/pypi/flintpy-nmr)
 
 [![Black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
@@ -44,7 +44,7 @@ Check out the [notebooks](./notebooks) directory for Jupyter notebooks demonstra
 ## Installation
 
 ```
-pip install git+https://github.com/rserial/flintpy.git
+pip install flintpy-nmr
 ```
 ## Credits
 

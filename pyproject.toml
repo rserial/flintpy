@@ -1,5 +1,6 @@
 [tool.poetry]
-name = "flintpy"
+name = "flintpy-nmr"
+packages = [{include = "*", from="src"}]
 version = "0.1.0"
 description = "Python implementation of FLINT algorithm for NMR relaxation data."
 authors = ["Raquel Serial <raquelserial@gmail.com>"]
@@ -7,7 +8,7 @@ readme = "README.md"
 homepage = "https://github.com/rserial/flintpy"
 repository = "https://github.com/rserial/flintpy"
 documentation = "https://flintpy.readthedocs.io"
-keywords = ["flintpy"]
+keywords = ["flintpy", "flintpy-nmr", "nmr"]
 classifiers=[
     "Development Status :: 2 - Pre-Alpha",
     "Intended Audience :: Developers",

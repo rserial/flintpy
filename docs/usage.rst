@@ -2,6 +2,6 @@
 Usage
 =====
 
-To use flintpy in a project::
+To use Flintpy-NMR in a project::
 
     import flintpy

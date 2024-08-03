@@ -1,4 +1,4 @@
-Welcome to Flintpy's documentation!
+Welcome to Flintpy-NMR's documentation!
 ===========================================================
 
 .. toctree::
