@@ -14,8 +14,8 @@ authors:
 identifiers:
   - type: url
     value: >-
-      https://github.com/rserial/flintpy/releases/tag/v0.1.0
-    description: The Software Heritage link for version 0.1.0.
+      https://github.com/rserial/flintpy/releases/tag/v0.1.1
+    description: The Software Heritage link for version 0.1.1.
 repository-code: 'https://github.com/rserial/flintpy'
 abstract: Python implementation of FLINT algorithm for NMR relaxation data.
 keywords:
@@ -23,4 +23,4 @@ keywords:
   - flintpy-nmr
   - nmr
 license: MIT
-version: 0.1.0
+version: 0.1.1
