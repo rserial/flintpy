@@ -4,8 +4,8 @@
 
 <div align="center">
 
-<object data="_static/logo.jpg" type="image/jpg" width="300">
-   <img src="assets/logo.jpg" width="200"/>
+<object data="_static/logo.png" type="image/png" width="300">
+   <img src="assets/logo.png" width="200"/>
 </object>
 
 [![PyPI - Version](https://img.shields.io/pypi/v/flintpy-nmr.svg)](https://pypi.python.org/pypi/flintpy-nmr)
