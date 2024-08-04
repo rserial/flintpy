@@ -4,6 +4,10 @@
 
 <div align="center">
 
+<object data="_static/logo.png" type="image/png" width="300">
+   <img src="assets/logo.png" width="200"/>
+</object>
+
 [![PyPI - Version](https://img.shields.io/pypi/v/flintpy-nmr.svg)](https://pypi.python.org/pypi/flintpy-nmr)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/flintpy-nmr.svg)](https://pypi.python.org/pypi/flintpy-nmr)
 [![Tests](https://github.com/rserial/flintpy/workflows/tests/badge.svg)](https://github.com/rserial/flintpy/actions?workflow=tests)
