@@ -1,13 +1,12 @@
-[tool.poetry]
+[project]
 name = "flintpy-nmr"
-packages = [{include = "*", from="src"}]
 version = "0.1.1"
 description = "Python implementation of FLINT algorithm for NMR relaxation data."
-authors = ["Raquel Serial <raquelserial@gmail.com>"]
+authors = [
+  {name = "Raquel Serial", email = "raquelserial@gmail.com>"},
+  {name = "Federico Jaureguialzo", email = "fedejaure@gmail.com"}
+]
 readme = "README.md"
-homepage = "https://github.com/rserial/flintpy"
-repository = "https://github.com/rserial/flintpy"
-documentation = "https://flintpy.readthedocs.io"
 keywords = ["flintpy", "flintpy-nmr", "nmr"]
 classifiers=[
     "Development Status :: 2 - Pre-Alpha",
@@ -19,14 +18,23 @@ classifiers=[
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
 ]
+requires-python = "<3.13,>=3.10"
+dependencies = [
+  "numpy (>=2.0.1,<3.0.0)",
+  "plotly (>=5.23.0,<6.0.0)"
+]
 
-[tool.poetry.urls]
+[project.urls]
+homepage = "https://github.com/rserial/flintpy"
+repository = "https://github.com/rserial/flintpy"
+documentation = "https://flintpy.readthedocs.io"
 "Bug Tracker" = "https://github.com/rserial/flintpy/issues"
 
-[tool.poetry.dependencies]
-python = "<3.13,>=3.10"
-numpy = "^2.0.1"
-plotly = "^5.23.0"
+[tool.poetry]
+packages = [{include = "flintpy", from="src"}]
+
+[tool.poetry.requires-plugins]
+poetry-plugin-export = ">=1.9"
 
 [tool.poetry.group.dev.dependencies]
 pre-commit = "^3.8.0"
@@ -159,5 +167,5 @@ warn_unreachable = true
 warn_no_return = true
 
 [build-system]
-requires = ["poetry>=0.12"]
-build-backend = "poetry.masonry.api"
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
