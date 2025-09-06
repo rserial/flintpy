@@ -10,6 +10,9 @@ type: software
 authors:
   - given-names: Raquel
     family-names: Serial
+    alias: rserial
+  - given-names: Federico
+    family-names: Jaureguialzo
     alias: fedejaure
 identifiers:
   - type: url
