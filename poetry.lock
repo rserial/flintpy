@@ -1793,14 +1793,14 @@ test = ["pep440", "pre-commit", "pytest", "testpath"]
 
 [[package]]
 name = "nbqa"
-version = "1.8.5"
+version = "1.9.1"
 description = "Run any standard Python code quality tool on a Jupyter Notebook"
 optional = false
-python-versions = ">=3.8.0"
+python-versions = ">=3.9"
 groups = ["linters"]
 files = [
-    {file = "nbqa-1.8.5-py3-none-any.whl", hash = "sha256:fe59ccb66f29bda2912c75cacf9cdbd34504923effb58ae1c88211d075213eff"},
-    {file = "nbqa-1.8.5.tar.gz", hash = "sha256:91624e9c747bbe38ff14ebf75d17cfb838b5c0432b039bcb7e8ad0bb423ef7ef"},
+    {file = "nbqa-1.9.1-py3-none-any.whl", hash = "sha256:95552d2f6c2c038136252a805aa78d85018aef922586270c3a074332737282e5"},
+    {file = "nbqa-1.9.1.tar.gz", hash = "sha256:a1f4bcf587c597302fed295951001fc4e1be4ce0e77e1ab1b25ac2fbe3db0cdd"},
 ]
 
 [package.dependencies]
@@ -3715,4 +3715,4 @@ tests-strict = ["pytest (==4.6.0) ; python_version < \"3.10.0\" and python_versi
 [metadata]
 lock-version = "2.1"
 python-versions = "<3.13,>=3.10"
-content-hash = "0949b6081fe3b15b339648aaae5b51692b008a40e85ff582e16687fdb07c8499"
+content-hash = "59acdb0f7e1d7e4038c668b2c24312feb51f90b6dc4bba96406ee5349958b50c"
