@@ -1,6 +1,6 @@
 [project]
 name = "flintpy-nmr"
-version = "0.1.1"
+version = "0.1.2"
 description = "Python implementation of FLINT algorithm for NMR relaxation data."
 authors = [
   {name = "Raquel Serial", email = "raquelserial@gmail.com>"},
