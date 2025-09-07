@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 
 ## [Unreleased]
+### Changed
+- poetry v2 support.
 
 ## [0.1.1] - 2024-08-04
 ### Changed
