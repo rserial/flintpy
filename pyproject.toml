@@ -40,7 +40,7 @@ poetry-plugin-export = ">=1.9"
 pre-commit = "^3.8.0"
 invoke = "^2.2.0"
 bump2version = "^1.0.1"
-watchdog = {version = "^4.0.0", extras = ["watchmedo"]}
+watchdog = {version = "^6.0.0", extras = ["watchmedo"]}
 jupyterlab = "^4.2.4"
 jupyterlab-templates = "^0.5.2"
 
